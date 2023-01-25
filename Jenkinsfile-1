@@ -2,7 +2,7 @@ pipeline{
 
    agent{ label 'linux'}
    option{
-   buildDiscarder(logRotator(numToKeepStr: '5')))
+   buildDiscarder(logRotator(numToKeepStr: '5'))
    }
    stages{
    
