@@ -4,7 +4,6 @@ node {
   }
   stage('SonarQube analysis') {
     withSonarQubeEnv('sq1') {
-      sh "${scannerHome}/bin/sonar-scanner"
     } // submitted SonarQube taskId is automatically attached to the pipeline context
   }
 }
