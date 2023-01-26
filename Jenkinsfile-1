@@ -3,8 +3,12 @@ node {
     git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
   }
   stage('SonarQube analysis') {
-    withSonarQubeEnv('sq1') {
-    } // submitted SonarQube taskId is automatically attached to the pipeline context
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('sq1') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
   }
 }
   
+
+
