@@ -12,14 +12,11 @@ pipeline {
                git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
        }
        stage("build & SonarQube analysis") {
-       
-          node {
           
               withSonarQubeEnv('sq1') {
               
                  sh 'mvn clean package sonar:sonar'
               }
-          }
        }
     }
 }
