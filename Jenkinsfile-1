@@ -9,14 +9,21 @@ pipeline {
     stages {
     
        stage('SCM') {
-               git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
+               steps {
+                
+                git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
+            }
+              
        }
        stage("build & SonarQube analysis") {
-          
-              withSonarQubeEnv('sq1') {
+          steps {
+                
+               withSonarQubeEnv('sq1') {
               
                  sh 'mvn clean package sonar:sonar'
               }
+            }
+              
        }
     }
 }
