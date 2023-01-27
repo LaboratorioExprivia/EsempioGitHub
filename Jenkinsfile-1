@@ -1,15 +1,26 @@
-node {
-  stage('SCM') {
-    git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
-  }
- stage("build & SonarQube analysis") {
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "3.8.7"
+    }
+
+    stages {
+    
+       stage('SCM') {
+               git 'https://github.com/LaboratorioExprivia/EsempioGitHub'
+       }
+       stage("build & SonarQube analysis") {
+       
           node {
+          
               withSonarQubeEnv('sq1') {
+              
                  sh 'mvn clean package sonar:sonar'
               }
           }
-      }
+       }
+    }
 }
-  
-
 
